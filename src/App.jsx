@@ -24,7 +24,14 @@ function App() {
       ...data,
       isCompleted: false
     })
-    loadTodos()
+
+    loadTodos();
+    
+    // reset permite resetear los valores que necesitemos
+    reset({
+      title: "",
+      description: ""
+    });
   }
 
   useEffect(() => {
@@ -33,7 +40,25 @@ function App() {
 
   return (
     <>
-      <h1>To Do App</h1>
+      <h1>To Do&apos;s App</h1>
+
+      <form onSubmit={handleSubmit(handleCreateTodo)}>
+        
+        <h2>Crear To do</h2>
+
+        <div>
+          <label htmlFor="titleId">Title: </label>
+          <input type="text" id='titleId'{...register("title")}  />
+        </div>
+        
+        <div>
+          <label htmlFor="descriptionId">Description: </label>
+          <input type="text" id='descriptionId'{...register("description")} />
+        </div>
+
+        <button type="submit">Create</button>
+
+      </form>
 
       {!todos.length && <p>No hay todos</p>}
 
